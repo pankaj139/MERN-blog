@@ -57,3 +57,46 @@ export const signin = async (req, res, next) => {
       next(err)
   }
 }
+
+export const google = async (req, res, next) => {
+  const { name, email, googlePhotoUrl } = req.body;
+  try {
+    const user = await User.findOne({email});
+    if(user){
+      const token = jwt.sign(
+        { id: user._id, email: user.email },
+        process.env.JWT_SECRET,
+        {
+          expiresIn: '1d',
+        }
+      );
+      const { password: pass, ...rest } = user._doc;
+      return res.status(200).cookie('access_token',token,{
+        httpOnly:true,
+      }).json(rest);
+    }else{
+      const generatePassword = Math.random().toString(36).slice(-8);
+      const newUser = new User({
+        username: name.toLowerCase().replace(/ /g,'')+Math.random().toString(9).slice(-4),
+        email: email,
+        password: bcryptjs.hashSync(generatePassword,10),
+        profilePicture: googlePhotoUrl,
+      });
+      await newUser.save();
+      const token = jwt.sign(
+        { id: newUser._id, email: newUser.email },
+        process.env.JWT_SECRET,
+        {
+          expiresIn: '1d',
+        }
+      );
+      const { password: pass, ...rest } = newUser._doc;
+      return res.status(200).cookie('access_token',token,{
+        httpOnly:true,
+      }).json(rest);
+    }
+  }
+  catch (err) {
+    next(err)
+  }
+}

@@ -15,6 +15,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  profilePicture:{
+    type: String,
+    default:"https://smarterpaymentsummit.co.uk/wp-content/uploads/2019/04/profile-pic-dummy.png",
+  }
 },{timestamps: true}
 );
 
