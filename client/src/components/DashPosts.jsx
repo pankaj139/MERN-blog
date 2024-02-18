@@ -1,4 +1,4 @@
-import { Table } from 'flowbite-react'
+import { Button, Table } from 'flowbite-react'
 import { useState,useEffect } from 'react'
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 export default function DashPosts() {
     const {currentUser} = useSelector((state) =>state.user)
     const [userPosts,setUserPosts] = useState([]);
+    const [showMore, setShowMore] = useState(true);
     console.log(userPosts);
     useEffect(() =>{
         const fetchPosts = async() =>{
@@ -14,6 +15,9 @@ export default function DashPosts() {
                 const data = await res.json();
                 if(res.ok){
                     setUserPosts(data.posts)
+                    if(data.posts.length < 9) {
+                        setShowMore(false);
+                    }
                 }
             } catch (error) {
                 console.log(error.message)
@@ -22,10 +26,27 @@ export default function DashPosts() {
         if(currentUser.isAdmin){
             fetchPosts();
         }
-    },[currentUser._id]); // Include 'currentUser.isAdmin' in the dependency array
+    },[currentUser._id]); 
+    const handleShowMore = async () => {
+        try {
+          const res = await fetch(
+            `/api/post/getposts?userId=${currentUser._id}&startIndex=${userPosts.length}`
+          );
+          const data = await res.json();
+          if (res.ok) {
+            setUserPosts([...userPosts, ...data.posts]);
+            if (data.posts.length < 9) {
+              setShowMore(false);
+            }
+          }
+        } catch (error) {
+          console.log(error.message);
+        }
+    }
   return (
     <div className='table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-100 scrollbar-thumb-slate-300 dark:scrollbar-track-slate-700  dark:scrollbar-thumb-slate-500 '>
         {currentUser.isAdmin && userPosts.length > 0 ?(
+            <>
             <Table hoverable className='shadow-md'>
                 <Table.Head>
                     <Table.HeadCell>Date updated</Table.HeadCell>
@@ -52,6 +73,7 @@ export default function DashPosts() {
                                     {post.title}
                                 </Link>
                             </Table.Cell>
+                            <Table.Cell>{post.category}</Table.Cell>
                             <Table.Cell>
                                 <span className='font-medium text-red-500 cursor-pointer hover:underline'>Delete</span>
                             </Table.Cell>
@@ -59,15 +81,20 @@ export default function DashPosts() {
                                 <Link to={`/update-post/${post.slug}`}>
                                     Edit
                                 </Link>
-                            </Table.Cell>
-
-                            <Table.Cell>{post.category}</Table.Cell>
+                            </Table.Cell>   
                         </Table.Row>
                     </Table.Body>
                 ))}
-
             </Table>
-
+            {showMore && (
+                <button
+                  onClick={handleShowMore}
+                  className='w-full text-teal-500 self-center text-sm py-7'
+                >
+                  Show more
+                </button>
+              )}
+                </>
         ) : (
             <h1>No posts found</h1>
         )}
