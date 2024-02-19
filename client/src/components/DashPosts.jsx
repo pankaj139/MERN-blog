@@ -106,7 +106,7 @@ export default function DashPosts() {
                                 className='font-medium text-red-500 cursor-pointer hover:underline'>Delete</span>
                             </Table.Cell>
                             <Table.Cell>
-                                <Link to={`/update-post/${post.slug}`}>
+                                <Link to={`/update-post/${post._id}`}>
                                     Edit
                                 </Link>
                             </Table.Cell>   
