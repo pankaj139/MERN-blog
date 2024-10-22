@@ -17,8 +17,8 @@ spec:
 apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
-  name: artist-api
-  description: Retrieve artist details
+  name: MERN-Blog-api
+  description: ALL api related to MERN Blog
 spec:
   type: openapi
   lifecycle: production
