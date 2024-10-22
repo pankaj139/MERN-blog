@@ -5,6 +5,10 @@ metadata:
   annotations:
     github.com/project-slug: pankaj139/MERN-blog
     backstage.io/techdocs-ref: dir:.
+  links:
+    - url: https://dashboard.example.com
+      title: My Dashboard
+      icon: dashboard
 spec:
   type: blog
   lifecycle: experienmental
