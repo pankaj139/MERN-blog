@@ -13,6 +13,7 @@ spec:
   type: blog
   lifecycle: experimental
   owner: observability
+  providesApis:[MERN-Blog-api]
 ---
 apiVersion: backstage.io/v1alpha1
 kind: API
