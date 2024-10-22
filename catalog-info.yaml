@@ -4,7 +4,7 @@ metadata:
   name: MERN-blog
   annotations:
     github.com/project-slug: pankaj139/MERN-blog
-    backstage.io/techdocs-ref: dir:./docs
+    backstage.io/techdocs-ref: dir:.
 spec:
   type: blog
   lifecycle: experienmental
