@@ -18,7 +18,7 @@ metadata:
 spec:
   type: openapi
   lifecycle: production
-  owner: artist-relations-team
+  owner: observability
   system: artist-engagement-portal
   definition: |
     openapi: "3.0.0"
