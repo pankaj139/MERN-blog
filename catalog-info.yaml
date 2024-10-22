@@ -19,7 +19,7 @@ spec:
   type: openapi
   lifecycle: production
   owner: observability
-  system: artist-engagement-portal
+  system: example
   definition: |
     openapi: "3.0.0"
     info:
