@@ -13,7 +13,7 @@ spec:
   type: blog
   lifecycle: experimental
   owner: observability
-  providesApis: [MERN-Blog-api]
+  #providesApis: [MERN-Blog-api]
   system: examples
   description: |
     A MERN stack blog application
