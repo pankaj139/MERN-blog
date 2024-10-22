@@ -14,6 +14,9 @@ spec:
   lifecycle: experimental
   owner: observability
   providesApis: [MERN-Blog-api]
+  system: examples
+  description: |
+    A MERN stack blog application
 ---
 apiVersion: backstage.io/v1alpha1
 kind: API
