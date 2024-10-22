@@ -29,4 +29,4 @@ spec:
   owner: observability
   system: examples
   definition:
-    $yaml: api.yaml
+    $yaml: ./api.yaml
