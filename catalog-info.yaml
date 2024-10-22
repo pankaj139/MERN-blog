@@ -28,5 +28,5 @@ spec:
   lifecycle: production
   owner: observability
   system: examples
-  definition: |
+  definition:
     $yaml: api.yaml
