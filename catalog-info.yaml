@@ -27,6 +27,6 @@ spec:
   type: openapi
   lifecycle: production
   owner: observability
-  system: example
+  system: examples
   definition: |
     $yaml: api.yaml
