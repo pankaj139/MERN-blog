@@ -23,6 +23,8 @@ kind: API
 metadata:
   name: MERN-Blog-api
   description: ALL api related to MERN Blog
+  annotations:
+    backstage.io/techdocs-ref: dir:.
 spec:
   type: openapi
   lifecycle: production
