@@ -6,8 +6,8 @@ metadata:
     github.com/project-slug: pankaj139/MERN-blog
     backstage.io/techdocs-ref: dir:./docs
 spec:
-  type: other
-  lifecycle: unknown
+  type: blog
+  lifecycle: experienmental
   owner: observability
 ---
 apiVersion: backstage.io/v1alpha1
